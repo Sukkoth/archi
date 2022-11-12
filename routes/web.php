@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\BusinessSettingController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,8 @@ Route::get('projects', [ProjectController::class, 'index'])->name('projects');
 Route::get('view_project/{project}', [ProjectController::class, 'show'])->name('view_project');
 Route::get('appointment/create', [AppointmentController::class, 'create'])->name('appointment.create');
 Route::post('appointment/store', [AppointmentController::class, 'store'])->name('appointment.store');
+
+Route::get('businessSettings', [BusinessSettingController::class, 'index'])->name('businessSettings');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
