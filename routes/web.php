@@ -24,8 +24,9 @@ Route::get('projects', [ProjectController::class, 'index'])->name('projects');
 Route::get('view_project/{project}', [ProjectController::class, 'show'])->name('view_project');
 Route::get('appointment/create', [AppointmentController::class, 'create'])->name('appointment.create');
 Route::post('appointment/store', [AppointmentController::class, 'store'])->name('appointment.store');
+Route::post('appointment/show', [AppointmentController::class, 'show'])->name('appointment.show');
+Route::post('appointment/delete', [AppointmentController::class, 'delete'])->name('appointment.delete');
 
 Route::get('businessSettings', [BusinessSettingController::class, 'index'])->name('businessSettings');
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

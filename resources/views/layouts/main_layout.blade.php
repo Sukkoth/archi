@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Arkitektur - Architecture HTML Template</title>
+    <title>{{ App\Models\BusinessSetting::where('businessName', 'aboutUs')->first()->businessValue['name']}}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
     <link href="{{asset('customs/img/icons/icon-1.png')}}" rel="icon">
@@ -22,8 +23,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    {{-- Toaster Stylesheet --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="{{asset('css/toastr.css')}}">
 
     <!-- Libraries Stylesheet -->
     <link href="{{ asset('customs/lib/animate/animate.min.css') }}" rel="stylesheet">
@@ -45,17 +45,19 @@
 
     @yield('content')
 
-
+@php
+    $companyContact = App\Models\BusinessSetting::where('businessName', 'contact')->first()->businessValue;
+@endphp
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-body footer mt-5 pt-5 px-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h3 class="text-light mb-4">Address</h3>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>123 Street, New York, USA
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>{{ $companyContact['address']}}
                     </p>
-                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>info@example.com</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>{{ $companyContact['phone'] }}</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>{{ $companyContact['email'] }}</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-body me-1" href=""><i
                                 class="fab fa-twitter"></i></a>
@@ -99,13 +101,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a href="#">Your Site Name</a>, All Right Reserved.
-                    </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                        <br> Distributed By: <a class="border-bottom" href="https://themewagon.com"
-                            target="_blank">ThemeWagon</a>
+                        &copy; <a href="#">Nanoarch.com</a>, All Right Reserved.
                     </div>
                 </div>
             </div>
@@ -123,7 +119,7 @@
     {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> --}}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ asset('js/toastr.js')}}"></script>
     <script src="{{ asset('customs/lib/wow/wow.min.js') }}"></script>
     <script src="{{ asset('customs/lib/easing/easing.min.js') }}"></script>
     <script src="{{ asset('customs/lib/waypoints/waypoints.min.js') }}"></script>
@@ -135,6 +131,10 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('customs/js/main.js') }}"></script>
+    <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        {!! Toastr::message() !!}
+    
+    @yield('scripts')
 </body>
 
 </html>

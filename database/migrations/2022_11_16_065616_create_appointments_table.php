@@ -19,11 +19,12 @@ class CreateAppointmentsTable extends Migration
             $table->string('email');
             $table->string('phoneNumber');
             $table->string('service');
-            $table->date('date');
-            $table->time('time');
+            $table->string('date');
+            $table->string('time');
             $table->longText('message');
-            $table->string('status'); //not approved, approved and on wait, held, denied
+            $table->string('status')->default('not_approved'); //not approved, approved and on wait, held, denied
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -1,18 +1,8 @@
 @extends('admin.layouts.main_layouts')
-@section('content')
-    
-    
-    <div class="container-fluid position-relative bg-white d-flex p-0">
-        {{-- <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End --> --}}
-
 
         <!-- Sidebar Start -->
+        @section('sidebar')
+        
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
@@ -38,6 +28,7 @@
                             <a href="element.html" class="dropdown-item">Other Elements</a>
                         </div>
                     </div>
+                    <a href="{{route('edit-info')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Edit Info</a>
                     <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
                     <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
@@ -54,11 +45,11 @@
                 </div>
             </nav>
         </div>
+        
+        @endsection
         <!-- Sidebar End -->
 
-
-        <!-- Content Start -->
-        <div class="content">
+        @section('content') {{--Content start--}}
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
                 <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
@@ -414,5 +405,6 @@
                 </div>
             </div>
             <!-- Widgets End -->
+        
+        @endsection {{--Content end--}}
 
-@endsection
