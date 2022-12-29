@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\AdminControllers;
 
 use App\Models\BusinessSetting;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class BusinessSettingController extends Controller

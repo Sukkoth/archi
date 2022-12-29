@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AppointmentController;
-use App\Http\Controllers\BusinessSettingController;
+use App\Http\Controllers\AdminControllers\BusinessSettingController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\WebController;
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'index')->name('/');
-Route::view('about', 'about')->name('about');
-Route::view('contact', 'contact')->name('contact');
-Route::view('services', 'services')->name('services');
+
+
+
+Route::controller(WebController::class)->group(function () {
+    Route::get('/', 'index')->name('/');
+    Route::get('about', 'about')->name('about');
+    Route::get('contact', 'contact')->name('contact');
+    Route::get('services', 'services')->name('services');
+});
+
+
 Route::get('projects', [ProjectController::class, 'index'])->name('projects');
 Route::get('view_project/{project}', [ProjectController::class, 'show'])->name('view_project');
 Route::get('appointment/create', [AppointmentController::class, 'create'])->name('appointment.create');
