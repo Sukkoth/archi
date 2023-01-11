@@ -16,8 +16,12 @@ class ProjectController extends Controller
         return view('admin.projects.index');
     }
 
+    public function show(Project $project){
+        return view('admin.projects.show', compact('project'));
+    }
+
     public function fetchProjects(Request $request){
-        $projects = QueryBuilder::for(Project::class)->allowedFilters([AllowedFilter::exact('location'), 'type'])->paginate(10);
+        $projects = QueryBuilder::for(Project::class)->allowedFilters(['location', 'type'])->paginate(10)->withQueryString();
         if(count($projects) > 0){
             return response()->json([
                 "projects" => $projects,

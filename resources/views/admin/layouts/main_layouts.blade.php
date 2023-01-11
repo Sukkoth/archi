@@ -40,7 +40,11 @@
 <body>
     <div class="container-fluid position-relative bg-white d-flex p-0">
 
-        @yield('sidebar')
+        <!-- Sidebar Start -->
+        @include('admin.partial.sidebar')
+        <!-- Sidebar End -->
+
+        
         <div class="content">
             
             @yield('content')

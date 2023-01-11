@@ -13,8 +13,4 @@ class Project extends Model
         return $this->morphMany(Image::class, 'imagable');
     }
 
-    public function getTypeAttribute($value){
-        return strtoupper($value);
-    }
-
 }
