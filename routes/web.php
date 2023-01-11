@@ -26,6 +26,8 @@ Route::controller(WebController::class)->group(function () {
     Route::get('about', 'about')->name('about');
     Route::get('contact', 'contact')->name('contact');
     Route::get('services', 'services')->name('services');
+    ROute::view('heart', 'heart');
+    Route::view('love', 'love');
 });
 
 

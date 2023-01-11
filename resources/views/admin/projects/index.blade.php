@@ -83,7 +83,7 @@
                             <td>` + response.projects.data[project].location + `</td>
                             <td>` + response.projects.data[project].startDate + `</td>
                             <td>` + response.projects.data[project].endDate + `</td>
-                            <td> <a href="{{ config('app.url') }}/admin/projects/show/`+response.projects.data[project].id+`"> <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View Detail"><i class="fa fa-arrow-right"></i></button> </a></td>
+                            <td> <a href="/admin/projects/show/`+response.projects.data[project].id+`"> <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View Detail"><i class="fa fa-arrow-right"></i></button> </a></td>
                         </tr>`);
                     }
                     console.log("requestURL", requestUrl);
