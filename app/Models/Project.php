@@ -9,8 +9,14 @@ class Project extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function images(){
         return $this->morphMany(Image::class, 'imagable');
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
 }

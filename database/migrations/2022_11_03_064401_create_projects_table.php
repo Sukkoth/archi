@@ -16,7 +16,7 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('type');
+            $table->unsignedBigInteger('category_id');
             $table->longText('description');
             $table->double('size')->nullable();
             $table->date('startDate')->nullable();
@@ -24,6 +24,8 @@ class CreateProjectsTable extends Migration
             $table->string('status');
             $table->string('location');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

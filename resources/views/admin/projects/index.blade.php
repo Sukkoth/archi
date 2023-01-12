@@ -78,7 +78,7 @@
                         $("#projectsTableBody").append(`<tr id="project` + response.projects.data[project].id + `">
                             <th scope="row">` + response.projects.data[project].id + `</th>
                             <td>` + response.projects.data[project].title + `</td>
-                            <td>` + response.projects.data[project].type + `</td>
+                            <td>` + response.projects.data[project].category.name + `</td>
                             <td>` + response.projects.data[project].size + `</td>
                             <td>` + response.projects.data[project].location + `</td>
                             <td>` + response.projects.data[project].startDate + `</td>
@@ -150,16 +150,17 @@
 
     <script>
         function filterProjects() {
-            let typeFilters = "?filter[type]=";
+            let categoryFilters = "?filter[category_id]=";
             let locationFilters = "&filter[location]=";
-            $("#typeFilters input:checkbox:checked").each(function() {
-                typeFilters+=$(this).val() + ',';
+            $("#categoryFilters input:checkbox:checked").each(function() {
+                categoryFilters+=$(this).val() + ',';
             });
+            console.log(categoryFilters);
 
             $("#locationFilters input:checkbox:checked").each(function() {
                 locationFilters+=$(this).val() + ',';
             });
-            fetchProjectsData(currentPath + typeFilters + locationFilters);
+            fetchProjectsData(currentPath + categoryFilters + locationFilters);
         }
     </script>
 @endsection

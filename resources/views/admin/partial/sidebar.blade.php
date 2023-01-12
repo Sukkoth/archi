@@ -21,42 +21,51 @@
                         class="far fa-file-alt me-2"></i>Projects</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{ route('admin.projects') }}" class="dropdown-item">All Projects</a>
-                    <a href="#" class="dropdown-item">Add new Project</a>
+                    <a href="{{ route('admin.projects.create') }}" class="dropdown-item">Add new Project</a>
                 </div>
                 @if (Request::is('admin/projects'))
-                <div class="container px-4 mx-4 mt-5">
-                    <h4>Filter</h4>
-                    <h6>Type</h6>
-                    <form id="typeFilters">
-                        @foreach (App\Models\Project::select('type')->distinct('type')->get()->pluck('type') as $item)
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="{{ $item }}"
-                                id="typeFilter{{ $item }}">
-                            <label class="form-check-label text-lowercase" for="typeFilter{{ $item }}">
-                                {{ $item }}
-                            </label>
-                        </div>
-                    @endforeach
-                    </form>
+                    <div class="container px-4 mx-4 mt-5">
+                        <h4>Filter</h4>
+                        <h6>Type</h6>
+                        <form id="categoryFilters">
+                            @foreach (App\Models\Category::get() as $category)
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="{{ $category->id }}"
+                                    id="categoryFilter{{ $category->id }}">
+                                <label class="form-check-label text-lowercase" for="categoryFilter{{ $category->name }}">
+                                    {{ $category->name }}
+                                </label>
+                            </div>
+                        @endforeach
+                        </form>
 
-                    <h6>Location</h6>
-                    <form id="locationFilters">
-                        @foreach (App\Models\Project::select('location')->distinct('location')->get()->pluck('location') as $item)
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="{{ $item }}"
-                                id="typeFilter{{ $item }}">
-                            <label class="form-check-label" for="typeFilter{{ $item }}">
-                                {{ $item }}
-                            </label>
-                        </div>
-                    @endforeach
-                    </form>
-                    <button class="btn btn-primary" type="button" onclick="filterProjects()">Filter</button>
+                        <h6>Location</h6>
+                        <form id="locationFilters">
+                            @foreach (App\Models\Project::select('location')->distinct('location')->get()->pluck('location') as $item)
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="{{ $item }}"
+                                    id="categoryFilter{{ $item }}">
+                                <label class="form-check-label" for="categoryFilter{{ $item }}">
+                                    {{ $item }}
+                                </label>
+                            </div>
+                        @endforeach
+                        </form>
+                        <button class="btn btn-primary" type="button" onclick="filterProjects()">Filter</button>
+                    </div>
+                @endif
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle @if(Request::is('admin/categories')) active @endif" data-bs-toggle="dropdown"><i
+                        class="far fa-file-alt me-2"></i>Categories</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="{{ route('admin.categories.index') }}" class="dropdown-item">List</a>
+                    <a href="{{ route('admin.categories.create') }}" class="dropdown-item">New Category</a>
                 </div>
-            @endif
-
             </div>
             
+
+           
         </div>
     </nav>
 </div>

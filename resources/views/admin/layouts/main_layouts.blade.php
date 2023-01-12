@@ -84,7 +84,7 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('customs/admin/js/main.js') }}"></script>
-
+    {!! Toastr::message() !!}
     @yield('scripts')
 </body>
 

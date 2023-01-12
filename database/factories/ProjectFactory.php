@@ -15,7 +15,7 @@ class ProjectFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence($nbWords = 4),
-            'type' => $this->faker->randomElement(['household', 'malls', 'schools', 'hospital']),
+            'category_id' => $this->faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8]),
             'description' => $this->faker->paragraph($nbSentences = 10),
             'size' => $this->faker->randomDigitNot(0),
             'startDate' => $this->faker->date(),
